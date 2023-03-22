@@ -31,6 +31,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('cash-flows', App\Http\Controllers\API\CashFlowController::class)->except(['edit', 'update']);
     Route::resource('customers', App\Http\Controllers\API\CustomerController::class)->except(['edit']);
     Route::resource('transactions', App\Http\Controllers\API\TransactionController::class)->except(['create', 'edit']);
+
+    Route::resource('orders', App\Http\Controllers\API\OrdersController::class);
+    Route::resource('orders-transactions', App\Http\Controllers\API\OrdersTransactionsController::class);
     // API route for logout user
     Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
 });
