@@ -18,7 +18,7 @@ class TrackingController extends Controller
     public function index()
     {
         $data = Tracking::latest()->get();
-        return response()->json(TrackingResource::collection($data));
+        return response()->json([TrackingResource::collection($data)]);
     }
 
     /**
@@ -65,7 +65,13 @@ class TrackingController extends Controller
      */
     public function show($id)
     {
-        //
+        $tracking = Tracking::find($id);
+
+        if (is_null($tracking)) {
+            return response()->json('Data not found', 404);
+        }
+
+        return response()->json([new TrackingResource($tracking)]);
     }
 
     /**
