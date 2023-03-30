@@ -35,8 +35,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('orders', App\Http\Controllers\API\OrdersController::class);
     Route::resource('orders-transactions', App\Http\Controllers\API\OrdersTransactionsController::class);
     Route::resource('tracking', App\Http\Controllers\API\TrackingController::class);
-    Route::resource('orders-tracking', App\Http\Controllers\API\OrderTrackingController::class);
-    Route::get('orders-tracking/order/{id}', [App\Http\Controllers\API\OrderTrackingController::class, 'indexByOrderId']);
+    Route::resource('orders-tracking', App\Http\Controllers\API\OrdersTrackingController::class);
+    Route::get('orders-tracking/order/{id}', [App\Http\Controllers\API\OrdersTrackingController::class, 'indexByOrderId']);
     // API route for logout user
     Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
 });
