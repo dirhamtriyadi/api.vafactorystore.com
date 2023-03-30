@@ -8,7 +8,7 @@ use App\Models\OrderTracking;
 use App\Http\Resources\OrderTrackingResource;
 use Validator;
 
-class OrderTrackingController extends Controller
+class OrdersTrackingController extends Controller
 {
     /**
      * Display a listing of the resource.
