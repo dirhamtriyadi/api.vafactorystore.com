@@ -18,7 +18,7 @@ class OrdersController extends Controller
     public function index()
     {
         $data = Order::with(['orderTransaction', 'user', 'customer', 'printType'])->get();
-        return response()->json(OrderResource::collection($data));
+        return response()->json([OrderResource::collection($data)]);
     }
 
     /**
