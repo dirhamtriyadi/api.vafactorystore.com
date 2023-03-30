@@ -13,7 +13,7 @@ class CreateOrderTrackingTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_tracking', function (Blueprint $table) {
+        Schema::create('orders_tracking', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tracking_id');
             // $table->foreign('tracking_id')->references('id')->on('tracking');
@@ -34,6 +34,6 @@ class CreateOrderTrackingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_tracking');
+        Schema::dropIfExists('orders_tracking');
     }
 }
