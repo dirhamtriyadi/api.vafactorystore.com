@@ -18,7 +18,7 @@ class OrdersController extends Controller
     public function index()
     {
         $data = Order::with(['orderTransaction', 'user', 'customer', 'printType'])->get();
-        return response()->json([OrderResource::collection($data)]);
+        return response()->json(OrderResource::collection($data));
     }
 
     /**
@@ -40,6 +40,7 @@ class OrdersController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'order_number' => 'required',
             'user_id' => 'required|numeric',
             'customer_id' => 'required|numeric',
             'print_type_id' => 'required|numeric',
@@ -58,6 +59,7 @@ class OrdersController extends Controller
         }
 
         $order = Order::create([
+            'order_number' => $request->order_number,
             'user_id' => $request->user_id,
             'customer_id' => $request->customer_id,
             'print_type_id' => $request->print_type_id,
@@ -106,6 +108,7 @@ class OrdersController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
+            'order_number' => 'required',
             'user_id' => 'required|numeric',
             'customer_id' => 'required|numeric',
             'print_type_id' => 'required|numeric',
@@ -125,6 +128,7 @@ class OrdersController extends Controller
 
         $order = Order::find($id);
         $order->update([
+            'order_number' => $request->order_number,
             'user_id' => $request->user_id,
             'customer_id' => $request->customer_id,
             'print_type_id' => $request->print_type_id,
