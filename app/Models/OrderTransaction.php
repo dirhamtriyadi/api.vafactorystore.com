@@ -17,4 +17,14 @@ class OrderTransaction extends Model
         'amount',
         'date',
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function paymentMethod()
+    {
+        return $this->belongsTo(PaymentMethod::class);
+    }
 }

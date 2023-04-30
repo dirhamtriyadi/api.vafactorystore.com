@@ -17,7 +17,7 @@ class OrdersTransactionsController extends Controller
      */
     public function index()
     {
-        $data = OrderTransaction::latest()->get();
+        $data = OrderTransaction::with('order', 'paymentMethod')->latest()->get();
         return response()->json(OrderTransactionResource::collection($data));
     }
 
