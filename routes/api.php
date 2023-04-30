@@ -33,7 +33,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('transactions', App\Http\Controllers\API\TransactionController::class)->except(['create', 'edit']);
 
     Route::resource('orders', App\Http\Controllers\API\OrdersController::class);
-    Route::resource('orders-transactions', App\Http\Controllers\API\OrdersTransactionsController::class);
+    Route::resource('order-transactions', App\Http\Controllers\API\OrdersTransactionsController::class);
     Route::resource('tracking', App\Http\Controllers\API\TrackingController::class);
     Route::resource('orders-tracking', App\Http\Controllers\API\OrdersTrackingController::class);
     Route::get('orders-tracking/order/{id}', [App\Http\Controllers\API\OrdersTrackingController::class, 'indexByOrderId']);
