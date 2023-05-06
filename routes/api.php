@@ -25,7 +25,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
     Route::resource('payment-methods', App\Http\Controllers\API\PaymentMethodController::class)->except(['edit']);
     Route::resource('print-types', App\Http\Controllers\API\PrintTypeController::class)->except(['edit']);
-    Route::resource('materials', App\Http\Controllers\API\MaterialController::class)->except(['edit']);
     Route::get('products/new-code', [App\Http\Controllers\API\ProductController::class, 'getNewProductCode']);
     Route::resource('products', App\Http\Controllers\API\ProductController::class)->except(['edit']);
     Route::resource('cash-flows', App\Http\Controllers\API\CashFlowController::class)->except(['edit', 'update']);
