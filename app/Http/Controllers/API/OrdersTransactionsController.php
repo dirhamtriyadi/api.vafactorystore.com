@@ -43,6 +43,7 @@ class OrdersTransactionsController extends Controller
             'order_id' => 'required|numeric',
             'payment_method_id' => 'required|numeric',
             'amount' => 'required|numeric',
+            'description' => 'required',
             'date' => 'required|date',
         ]);
 
@@ -54,6 +55,7 @@ class OrdersTransactionsController extends Controller
             'order_id' => $request->order_id,
             'payment_method_id' => $request->payment_method_id,
             'amount' => $request->amount,
+            'description' => $request->description,
             'date' => $request->date,
         ]);
 
@@ -95,6 +97,7 @@ class OrdersTransactionsController extends Controller
             'order_id' => 'required|numeric',
             'payment_method_id' => 'required|numeric',
             'amount' => 'required|numeric',
+            'description' => 'required',
             'date' => 'required|date',
         ]);
 
@@ -107,6 +110,7 @@ class OrdersTransactionsController extends Controller
             'order_id' => $request->order_id,
             'payment_method_id' => $request->payment_method_id,
             'amount' => $request->amount,
+            'description' => $request->description,
             'date' => $request->date,
         ]);
 

@@ -15,6 +15,7 @@ class OrderTransaction extends Model
         'order_id',
         'payment_method_id',
         'amount',
+        'description',
         'date',
     ];
 

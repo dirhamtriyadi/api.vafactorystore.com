@@ -22,6 +22,7 @@ class OrderTransactionResource extends JsonResource
             'payment_method' => new PaymentMethodResource($this->whenLoaded('paymentMethod')),
             'amount' => $this->amount,
             'date' => $this->date,
+            'description' => $this->description,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
