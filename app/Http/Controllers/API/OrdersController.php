@@ -21,6 +21,15 @@ class OrdersController extends Controller
         return response()->json(OrderResource::collection($data));
     }
 
+    public function getByOrder(Request $request, $order)
+    {
+        $data = Order::where('order_number', $order)->with(['orderTransaction', 'user', 'customer', 'printType'])->get();
+        // dd($data);
+        // $data = Order::with(['orderTransaction', 'user', 'customer', 'printType'])->latest()->get();
+        return response()->json(OrderResource::collection($data));
+        // return response()->json($data);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

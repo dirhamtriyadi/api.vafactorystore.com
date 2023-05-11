@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('orders/get/{order}', [App\Http\Controllers\API\OrdersController::class, 'getByOrder'])->name('orders.getByOrder');
 //API route for registering a new user
 Route::post('/register', [App\Http\Controllers\API\AuthController::class, 'register']);
 //API route for logging user in
