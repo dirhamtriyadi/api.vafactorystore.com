@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('orders/get/{order}', [App\Http\Controllers\API\OrdersController::class, 'getByOrder'])->name('orders.getByOrder');
 //API route for registering a new user
 Route::post('/register', [App\Http\Controllers\API\AuthController::class, 'register']);
 //API route for logging user in
@@ -34,8 +35,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('orders', App\Http\Controllers\API\OrdersController::class);
     Route::resource('order-transactions', App\Http\Controllers\API\OrdersTransactionsController::class);
     Route::resource('tracking', App\Http\Controllers\API\TrackingController::class);
-    Route::resource('orders-tracking', App\Http\Controllers\API\OrdersTrackingController::class);
-    Route::get('orders-tracking/order/{id}', [App\Http\Controllers\API\OrdersTrackingController::class, 'indexByOrderId']);
+    Route::resource('order-trackings', App\Http\Controllers\API\OrdersTrackingController::class);
+    Route::get('order-tracking/order/{id}', [App\Http\Controllers\API\OrdersTrackingController::class, 'indexByOrderId']);
     // API route for logout user
     Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
 });

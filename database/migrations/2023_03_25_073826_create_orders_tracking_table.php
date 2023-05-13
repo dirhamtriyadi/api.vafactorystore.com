@@ -15,14 +15,13 @@ class CreateOrdersTrackingTable extends Migration
     {
         Schema::create('orders_tracking', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tracking_id');
-            // $table->foreign('tracking_id')->references('id')->on('tracking');
             $table->unsignedBigInteger('order_id');
             // $table->foreign('order_id')->references('id')->on('orders');
-            $table->string('name');
+            $table->unsignedBigInteger('tracking_id');
+            // $table->foreign('tracking_id')->references('id')->on('tracking');
             $table->string('description');
-            $table->string('status');
-            $table->string('date');
+            $table->boolean('status');
+            $table->dateTime('date');
             $table->timestamps();
         });
     }

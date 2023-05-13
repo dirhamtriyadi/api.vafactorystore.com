@@ -14,6 +14,15 @@ class OrderTrackingResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'order' => $this->order,
+            'tracking' => $this->tracking,
+            'description' => $this->description,
+            'status' => $this->status,
+            'date' => $this->date,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }
