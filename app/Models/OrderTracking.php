@@ -12,9 +12,8 @@ class OrderTracking extends Model
     protected $table = 'orders_tracking';
 
     protected $fillable = [
-        'tracking_id',
         'order_id',
-        'name',
+        'tracking_id',
         'description',
         'status',
         'date',
