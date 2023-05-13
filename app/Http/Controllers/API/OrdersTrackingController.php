@@ -46,9 +46,8 @@ class OrdersTrackingController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'tracking_id' => 'required',
             'order_id' => 'required',
-            'name' => 'required',
+            'tracking_id' => 'required',
             'description' => 'required',
             'status' => 'required',
             'date' => 'required|date',
@@ -59,9 +58,8 @@ class OrdersTrackingController extends Controller
         }
 
         $orderTracking = OrderTracking::create([
-            'tracking_id' => $request->tracking_id,
             'order_id' => $request->order_id,
-            'name' => $request->name,
+            'tracking_id' => $request->tracking_id,
             'description' => $request->description,
             'status' => $request->status,
             'date' => $request->date,
@@ -103,9 +101,8 @@ class OrdersTrackingController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'tracking_id' => 'required',
             'order_id' => 'required',
-            'name' => 'required',
+            'tracking_id' => 'required',
             'description' => 'required',
             'status' => 'required',
             'date' => 'required|date',
@@ -117,9 +114,8 @@ class OrdersTrackingController extends Controller
 
         $orderTracking = OrderTracking::find($id);
         $orderTracking->update([
-            'tracking_id' => $request->tracking_id,
             'order_id' => $request->order_id,
-            'name' => $request->name,
+            'tracking_id' => $request->tracking_id,
             'description' => $request->description,
             'status' => $request->status,
             'date' => $request->date,
