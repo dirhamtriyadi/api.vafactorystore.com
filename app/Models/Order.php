@@ -45,4 +45,9 @@ class Order extends Model
     {
         return $this->hasMany(OrderTransaction::class);
     }
+
+    public function orderTracking()
+    {
+        return $this->hasMany(OrderTracking::class);
+    }
 }

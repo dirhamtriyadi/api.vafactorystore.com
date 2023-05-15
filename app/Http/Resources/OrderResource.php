@@ -17,6 +17,8 @@ class OrderResource extends JsonResource
         return [
             'id' => $this->id,
             'order_number' => $this->order_number,
+            'orderTransaction' => OrderTransactionResource::collection($this->whenLoaded('orderTransaction')),
+            'orderTracking' => OrderTrackingResource::collection($this->whenLoaded('orderTracking')),
             // 'user_id' => $this->user_id,
             'user' => new UserResource($this->whenLoaded('user')),
             // 'customer_id' => $this->customer_id,
