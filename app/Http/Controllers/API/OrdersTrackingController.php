@@ -125,6 +125,25 @@ class OrdersTrackingController extends Controller
         ]);
     }
 
+    public function updateProccess(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'status' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        $orderTracking = OrderTracking::find($id);
+        $orderTracking->update([
+            'status' => $request->status,
+        ]);
+
+        return response()->json(['Order Tracking updated successfully', new OrderTrackingResource($orderTracking)
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
