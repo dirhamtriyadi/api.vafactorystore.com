@@ -17,13 +17,16 @@ class OrdersTrackingController extends Controller
      */
     public function index()
     {
-        $orderTracking = OrderTracking::all();
+        $orderTracking = OrderTracking::latest()->get();
         return response()->json(OrderTrackingResource::collection($orderTracking));
     }
 
     public function indexByOrderId($id)
     {
-        $orderTracking = OrderTracking::where('order_id', $id)->get();
+        $orderTracking = OrderTracking::whereHas('order', function ($q) use ($id) {
+            $q->where('order_number', $id);
+
+        })->latest()->get();
         return response()->json(OrderTrackingResource::collection($orderTracking));
     }
 
