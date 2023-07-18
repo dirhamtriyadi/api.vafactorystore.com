@@ -25,7 +25,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 "user_id" => 1,
-                "name" => "master-jenis",
+                "name" => "master-kategori",
             ],
             [
                 "user_id" => 1,
