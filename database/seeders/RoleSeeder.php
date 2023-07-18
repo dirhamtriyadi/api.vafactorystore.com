@@ -53,7 +53,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 "user_id" => 1,
-                "name" => "laporan-uangkas",
+                "name" => "laporan-uang-kas",
             ],
             [
                 "user_id" => 1,
