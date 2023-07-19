@@ -17,7 +17,7 @@ class OrdersTrackingController extends Controller
      */
     public function index()
     {
-        $orderTracking = OrderTracking::latest()->get();
+        $orderTracking = OrderTracking::with('order.customer')->latest()->get();
         return response()->json(OrderTrackingResource::collection($orderTracking));
     }
 
