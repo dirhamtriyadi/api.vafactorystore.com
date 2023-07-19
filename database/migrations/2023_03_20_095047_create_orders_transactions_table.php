@@ -17,6 +17,7 @@ class CreateOrdersTransactionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('payment_method_id');
+            $table->unsignedBigInteger('user_id');
             $table->bigInteger('amount');
             $table->text('description');
             $table->date('date');
