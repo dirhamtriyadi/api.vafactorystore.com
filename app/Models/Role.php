@@ -16,7 +16,7 @@ class Role extends Model
         'name',
     ];
 
-    function users() {
+    function user() {
         return $this->belongsTo(User::class);
     }
 }
