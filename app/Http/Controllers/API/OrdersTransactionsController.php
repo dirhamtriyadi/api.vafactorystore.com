@@ -17,7 +17,7 @@ class OrdersTransactionsController extends Controller
      */
     public function index()
     {
-        $data = OrderTransaction::with('order', 'paymentMethod')->latest()->get();
+        $data = OrderTransaction::with('order', 'paymentMethod', 'user')->latest()->get();
         return response()->json(OrderTransactionResource::collection($data));
     }
 
@@ -42,6 +42,7 @@ class OrdersTransactionsController extends Controller
         $validator = Validator::make($request->all(), [
             'order_id' => 'required|numeric',
             'payment_method_id' => 'required|numeric',
+            'user_id' => 'required|numeric',
             'amount' => 'required|numeric',
             'description' => 'required',
             'date' => 'required|date',
@@ -54,6 +55,7 @@ class OrdersTransactionsController extends Controller
         $orderTransaction = OrderTransaction::create([
             'order_id' => $request->order_id,
             'payment_method_id' => $request->payment_method_id,
+            'user_id' => $request->user_id,
             'amount' => $request->amount,
             'description' => $request->description,
             'date' => $request->date,
@@ -96,6 +98,7 @@ class OrdersTransactionsController extends Controller
         $validator = Validator::make($request->all(), [
             'order_id' => 'required|numeric',
             'payment_method_id' => 'required|numeric',
+            'user_id' => 'required|numeric',
             'amount' => 'required|numeric',
             'description' => 'required',
             'date' => 'required|date',
@@ -109,6 +112,7 @@ class OrdersTransactionsController extends Controller
         $orderTransaction->update([
             'order_id' => $request->order_id,
             'payment_method_id' => $request->payment_method_id,
+            'user_id' => $request->user_id,
             'amount' => $request->amount,
             'description' => $request->description,
             'date' => $request->date,
