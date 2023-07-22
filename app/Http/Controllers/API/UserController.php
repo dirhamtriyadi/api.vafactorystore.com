@@ -98,7 +98,6 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'email|unique:users,email,'.$id,
-            'password' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -106,10 +105,16 @@ class UserController extends Controller
         }
 
         $user = User::find($id);
+        if ($request->password) {
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password)
+            ]);
+        }
         $user->update([
             'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'email' => $request->email
         ]);
 
         return response()->json(['User updated successfully.', new UserResource($user)]);
