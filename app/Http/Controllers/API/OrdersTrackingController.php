@@ -52,7 +52,6 @@ class OrdersTrackingController extends Controller
             'order_id' => 'required',
             'tracking_id' => 'required',
             'description' => 'required',
-            'status' => 'required',
             'date' => 'required|date',
         ]);
 
@@ -64,7 +63,6 @@ class OrdersTrackingController extends Controller
             'order_id' => $request->order_id,
             'tracking_id' => $request->tracking_id,
             'description' => $request->description,
-            'status' => $request->status,
             'date' => $request->date,
         ]);
 
@@ -107,7 +105,6 @@ class OrdersTrackingController extends Controller
             'order_id' => 'required',
             'tracking_id' => 'required',
             'description' => 'required',
-            'status' => 'required',
             'date' => 'required|date',
         ]);
 
@@ -120,27 +117,7 @@ class OrdersTrackingController extends Controller
             'order_id' => $request->order_id,
             'tracking_id' => $request->tracking_id,
             'description' => $request->description,
-            'status' => $request->status,
             'date' => $request->date,
-        ]);
-
-        return response()->json(['Order Tracking updated successfully', new OrderTrackingResource($orderTracking)
-        ]);
-    }
-
-    public function updateProccess(Request $request, $id)
-    {
-        $validator = Validator::make($request->all(), [
-            'status' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors());
-        }
-
-        $orderTracking = OrderTracking::find($id);
-        $orderTracking->update([
-            'status' => $request->status,
         ]);
 
         return response()->json(['Order Tracking updated successfully', new OrderTrackingResource($orderTracking)

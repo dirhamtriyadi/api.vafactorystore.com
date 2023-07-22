@@ -19,7 +19,6 @@ class OrderTrackingResource extends JsonResource
             'order' => new OrderResource($this->whenLoaded('order')),
             'tracking' => new TrackingResource($this->whenLoaded('tracking')),
             'description' => $this->description,
-            'status' => $this->status,
             'date' => $this->date,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
