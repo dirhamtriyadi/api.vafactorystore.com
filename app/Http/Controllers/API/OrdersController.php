@@ -17,13 +17,13 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $data = Order::with(['orderTransaction.paymentMethod', 'orderTransaction.user', 'orderTracking', 'user', 'customer', 'printType'])->latest()->get();
+        $data = Order::with(['orderTransaction.paymentMethod', 'orderTransaction.user', 'orderTracking.tracking', 'user', 'customer', 'printType'])->latest()->get();
         return response()->json(OrderResource::collection($data));
     }
 
     public function getByOrder(Request $request, $order)
     {
-        $data = Order::where('order_number', $order)->with(['orderTransaction', 'orderTracking', 'user', 'customer', 'printType'])->get();
+        $data = Order::where('order_number', $order)->with(['orderTransaction', 'orderTracking.tracking', 'user', 'customer', 'printType'])->get();
         // dd($data);
         // $data = Order::with(['orderTransaction', 'user', 'customer', 'printType'])->latest()->get();
         return response()->json(OrderResource::collection($data));
