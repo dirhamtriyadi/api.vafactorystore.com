@@ -72,7 +72,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 "user_id" => 1,
-                "name" => "hak-akses-users"
+                "name" => "hak-akses-users",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
