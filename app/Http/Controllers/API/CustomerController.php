@@ -31,8 +31,8 @@ class CustomerController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:customers,name',
-            'phone' => 'required|numeric|unique:customers,phone',
-            'email' => 'email|unique:customers,email'
+            // 'phone' => 'required|numeric|unique:customers,phone',
+            // 'email' => 'email|unique:customers,email'
         ]);
 
         if ($validator->fails()) {
@@ -77,8 +77,8 @@ class CustomerController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:customers,name,'. $customer->id,
-            'phone' => 'required|numeric|unique:customers,phone,'. $customer->id,
-            'email' => 'email|unique:customers,email,'. $customer->id
+            // 'phone' => 'required|numeric|unique:customers,phone,'. $customer->id,
+            // 'email' => 'email|unique:customers,email,'. $customer->id
         ]);
 
         if ($validator->fails()) {
