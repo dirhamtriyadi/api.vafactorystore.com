@@ -48,12 +48,14 @@ class RoleController extends Controller
             return response()->json($validator->errors());
         }
 
-        $role = Role::create([
-            'name' => $request->name,
-            'user_id' => $request->user_id
-        ]);
+        foreach ($request->name as $key => $value) {
+            $role = Role::create([
+                'name' => $value['value'],
+                'user_id' => $request->user_id
+            ]);
+        }
 
-        return response()->json(['Role created successfully.', new RoleResource($role)]);
+        return response()->json(['Role created successfully.', $request->all()]);
     }
 
     /**
