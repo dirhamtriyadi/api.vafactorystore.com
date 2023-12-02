@@ -19,7 +19,7 @@ class CreateOrdersTrackingTable extends Migration
             // $table->foreign('order_id')->references('id')->on('orders');
             $table->unsignedBigInteger('tracking_id');
             // $table->foreign('tracking_id')->references('id')->on('tracking');
-            $table->string('description');
+            $table->text('description');
             $table->boolean('status');
             $table->dateTime('date');
             $table->timestamps();

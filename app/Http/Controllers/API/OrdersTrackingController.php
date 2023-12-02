@@ -17,13 +17,16 @@ class OrdersTrackingController extends Controller
      */
     public function index()
     {
-        $orderTracking = OrderTracking::all();
+        $orderTracking = OrderTracking::with('order.customer', 'tracking')->latest()->get();
         return response()->json(OrderTrackingResource::collection($orderTracking));
     }
 
     public function indexByOrderId($id)
     {
-        $orderTracking = OrderTracking::where('order_id', $id)->get();
+        $orderTracking = OrderTracking::whereHas('order', function ($q) use ($id) {
+            $q->where('order_number', $id);
+
+        })->latest()->get();
         return response()->json(OrderTrackingResource::collection($orderTracking));
     }
 
@@ -49,7 +52,6 @@ class OrdersTrackingController extends Controller
             'order_id' => 'required',
             'tracking_id' => 'required',
             'description' => 'required',
-            'status' => 'required',
             'date' => 'required|date',
         ]);
 
@@ -61,7 +63,6 @@ class OrdersTrackingController extends Controller
             'order_id' => $request->order_id,
             'tracking_id' => $request->tracking_id,
             'description' => $request->description,
-            'status' => $request->status,
             'date' => $request->date,
         ]);
 
@@ -104,7 +105,6 @@ class OrdersTrackingController extends Controller
             'order_id' => 'required',
             'tracking_id' => 'required',
             'description' => 'required',
-            'status' => 'required',
             'date' => 'required|date',
         ]);
 
@@ -117,7 +117,6 @@ class OrdersTrackingController extends Controller
             'order_id' => $request->order_id,
             'tracking_id' => $request->tracking_id,
             'description' => $request->description,
-            'status' => $request->status,
             'date' => $request->date,
         ]);
 
