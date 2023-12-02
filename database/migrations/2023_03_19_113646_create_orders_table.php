@@ -25,7 +25,7 @@ class CreateOrdersTable extends Migration
             $table->integer('discount');
             $table->integer('subtotal');
             $table->string('name');
-            $table->string('description');
+            $table->text('description');
             $table->date('order_date');
             $table->timestamps();
         });

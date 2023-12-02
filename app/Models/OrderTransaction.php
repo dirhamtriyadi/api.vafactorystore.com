@@ -14,6 +14,7 @@ class OrderTransaction extends Model
     protected $fillable = [
         'order_id',
         'payment_method_id',
+        'user_id',
         'amount',
         'description',
         'date',
@@ -27,5 +28,9 @@ class OrderTransaction extends Model
     public function paymentMethod()
     {
         return $this->belongsTo(PaymentMethod::class);
+    }
+
+    function user() {
+        return $this->belongsTo(User::class);
     }
 }

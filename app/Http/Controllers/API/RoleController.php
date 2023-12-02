@@ -4,11 +4,11 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\OrderTracking;
-use App\Http\Resources\OrderTrackingResource;
+use App\Models\Role;
+use App\Http\Resources\RoleResource;
 use Validator;
 
-class OrdersTrackingController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,17 +17,8 @@ class OrdersTrackingController extends Controller
      */
     public function index()
     {
-        $orderTracking = OrderTracking::with('order.customer', 'tracking')->latest()->get();
-        return response()->json(OrderTrackingResource::collection($orderTracking));
-    }
-
-    public function indexByOrderId($id)
-    {
-        $orderTracking = OrderTracking::whereHas('order', function ($q) use ($id) {
-            $q->where('order_number', $id);
-
-        })->latest()->get();
-        return response()->json(OrderTrackingResource::collection($orderTracking));
+        $data = Role::with("user")->get();
+        return response()->json([RoleResource::collection($data)]);
     }
 
     /**
@@ -49,25 +40,20 @@ class OrdersTrackingController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'order_id' => 'required',
-            'tracking_id' => 'required',
-            'description' => 'required',
-            'date' => 'required|date',
+            'name' => 'required',
+            'user_id' => 'required'
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors());
         }
 
-        $orderTracking = OrderTracking::create([
-            'order_id' => $request->order_id,
-            'tracking_id' => $request->tracking_id,
-            'description' => $request->description,
-            'date' => $request->date,
+        $role = Role::create([
+            'name' => $request->name,
+            'user_id' => $request->user_id
         ]);
 
-        return response()->json(['Order Tracking created successfully', new OrderTrackingResource($orderTracking)
-        ]);
+        return response()->json(['Role created successfully.', new RoleResource($role)]);
     }
 
     /**
@@ -102,26 +88,21 @@ class OrdersTrackingController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'order_id' => 'required',
-            'tracking_id' => 'required',
-            'description' => 'required',
-            'date' => 'required|date',
+            'name' => 'required',
+            'user_id' => 'required'
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors());
         }
 
-        $orderTracking = OrderTracking::find($id);
-        $orderTracking->update([
-            'order_id' => $request->order_id,
-            'tracking_id' => $request->tracking_id,
-            'description' => $request->description,
-            'date' => $request->date,
+        $role = Role::find($id);
+        $role->update([
+            'name' => $request->name,
+            'user_id' => $request->user_id
         ]);
 
-        return response()->json(['Order Tracking updated successfully', new OrderTrackingResource($orderTracking)
-        ]);
+        return response()->json(['Role updated successfully.', new RoleResource($role)]);
     }
 
     /**
@@ -132,8 +113,8 @@ class OrdersTrackingController extends Controller
      */
     public function destroy($id)
     {
-        $orderTracking = OrderTracking::find($id);
-        $orderTracking->delete();
-        return response()->json(['Order Tracking deleted successfully']);
+        $order = Role::find($id);
+        $order->delete();
+        return response()->json(['Role deleted successfully.']);
     }
 }

@@ -42,12 +42,12 @@ class AuthController extends Controller
                 ->json(['message' => 'Unauthorized'], 401);
         }
 
-        $user = User::where('email', $request['email'])->firstOrFail();
+        $user = User::with('role')->where('email', $request['email'])->firstOrFail();
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()
-            ->json(['id' => $user->id, 'name' => $user->name, 'message' => 'Hi '.$user->name.', welcome to home','access_token' => $token, 'token_type' => 'Bearer', ]);
+            ->json(['id' => $user->id, 'name' => $user->name, 'message' => 'Hi '.$user->name.', welcome to home','access_token' => $token, 'token_type' => 'Bearer', "role" => $user->role ]);
     }
 
     // method for user logout and delete token

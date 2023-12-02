@@ -20,6 +20,8 @@ class CashFlowResource extends JsonResource
             'cash_flow_type' => $this->cash_flow_type,
             'amount' => $this->amount,
             'payment_methods_id' => $this->payment_methods_id,
+            // 'payment_method' => $this->paymentMethod,
+            'payment_method' => new PaymentMethodResource($this->whenLoaded('paymentMethod')),
             'description' => $this->description,
             'user' => $this->user
         ];

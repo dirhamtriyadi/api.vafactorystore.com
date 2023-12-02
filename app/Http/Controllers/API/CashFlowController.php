@@ -37,6 +37,12 @@ class CashFlowController extends Controller
         return response()->json(CashFlowResource::collection(($ls)));
     }
 
+    function getAll() {
+        $data = CashFlow::with(['paymentMethod'])->get();
+        // dd($data);
+        return response()->json(CashFlowResource::collection(($data)));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
