@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Resources\UserResource;
 use Validator;
+use Auth;
 
 class UserController extends Controller
 {
@@ -132,5 +133,11 @@ class UserController extends Controller
         $user->delete();
 
         return response()->json('User deleted successfully.');
+    }
+
+    public function checkRole(Request $request)
+    {
+        $user = Auth::user();
+        return response()->json($user->role);
     }
 }

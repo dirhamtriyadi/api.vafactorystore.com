@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/profile', function(Request $request) {
         return auth()->user();
     });
+    Route::get('user/check-role', [App\Http\Controllers\API\UserController::class, 'checkRole'])->name('user.checkRole');
     Route::resource('user', App\Http\Controllers\API\UserController::class);
     Route::resource('payment-methods', App\Http\Controllers\API\PaymentMethodController::class)->except(['edit']);
     Route::resource('print-types', App\Http\Controllers\API\PrintTypeController::class)->except(['edit']);
